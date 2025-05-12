@@ -2,6 +2,9 @@ class HashMap {
   constructor(loadFactor = 0.75, capacity = 16) {
     this.loadFactor = loadFactor;
     this.capacity = capacity;
+    this.buckets = [];
+
+    this.#init();
   }
 
   hash(key) {
@@ -15,12 +18,20 @@ class HashMap {
 
     return hashCode;
   }
+
+  #init() {
+    for (let i = 0; i < this.capacity; i++) {
+      this.buckets.push([]);
+    }
+  }
 }
 
 const test = new HashMap();
 
 console.log(test);
 
-console.log(test.hash("Hello"));
+console.log(test.hash("Rama"));
+
+// console.log(test.init());
 
 console.log("Console working!");
