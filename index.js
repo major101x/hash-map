@@ -2,17 +2,19 @@ import LinkedList from "./linked-list.js";
 
 class HashMap {
   constructor(loadFactor = 0.75, capacity = 16) {
-    this.loadFactor = loadFactor;
-    this.capacity = capacity;
+    this.loadFactor = loadFactor; // Load factor to determine if array capacity should increase
+    this.capacity = capacity; // Array capacity
     this.buckets = [];
 
+    // Run private function to initialize buckets on instantiation
     this.#init();
   }
 
+  /* Hashes the key and sets the number to not exceed the array capacity */
   hash(key) {
     let hashCode = 0;
 
-    let primeNumber = 31;
+    let primeNumber = 31; // Prime number reduces likelihood of collisions
 
     for (let i = 0; i < key.length; i++) {
       hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;
@@ -21,6 +23,7 @@ class HashMap {
     return hashCode;
   }
 
+  /* Initializes individual buckets with linkedLists inside buckets array */
   #init() {
     for (let i = 0; i < this.capacity; i++) {
       let list = new LinkedList();
@@ -28,19 +31,22 @@ class HashMap {
     }
   }
 
+  /* Returns bucket after hash is used to get bucket index */
   bucket(key) {
     let index = this.hash(key);
     return this.buckets[index];
   }
 
+  /* Adds key and value to bucket in the hashMap */
   set(key, value) {
-    let bucket = this.bucket(key);
-    let list = bucket[0];
+    let bucket = this.bucket(key); // Gets bucket
+    let list = bucket[0]; // Selects instance of linkedList
 
     if (list.size() === 0) {
-      list.append(key, value);
+      list.append(key, value); 
     }
 
+    // if list contains key, overwrite the value. else, append new key and value to the list
     if (list.contains(key)) {
       let nodeIndex = list.find(key);
       let foundNode = list.at(nodeIndex);
