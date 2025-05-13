@@ -27,6 +27,11 @@ class HashMap {
       this.buckets.push([list]);
     }
   }
+
+  bucket(key) {
+    let index = this.hash(key);
+    return this.buckets[index];
+  }
 }
 
 const test = new HashMap();
