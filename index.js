@@ -116,18 +116,20 @@ class HashMap {
 
 const test = new HashMap();
 
-console.log(test.set("Rama", "hi"));
+/* TEST CODE */
 
-console.log(test.set("Pulpy", "hi"));
-
-console.log(test.set("Sita", "nothing"));
+test.set("Rama", "hi");
+test.set("Pulpy", "hi");
+test.set("Sita", "nothing");
 
 console.log(test.get("Sita"));
 console.log(test.get("Rama"));
 
 console.log(test.has("Sita"));
-console.log(test.remove("Sita"));
-console.log(test.remove("Pulpy"));
+
+test.remove("Sita");
+test.remove("Pulpy");
+
 console.log(test.has("Pulpy"));
 console.log(test.has("Sita"));
 console.log(test.has("Rama"));
