@@ -112,6 +112,21 @@ class HashMap {
       throw new Error("Key not found"); // Throw error if key does not exist
     }
   }
+
+  /* Returns the number of stored keys in the hash map */
+  length() {
+    let count = 0;
+
+    for (let bucket of this.buckets) {
+      let list = bucket[0]; // Selects instance of linkedList
+
+      let size = list.size(); // gets the size of each linkedList
+
+      count += size; // Adds the size to the count
+    }
+
+    return count;
+  }
 }
 
 const test = new HashMap();
@@ -133,6 +148,8 @@ test.remove("Pulpy");
 console.log(test.has("Pulpy"));
 console.log(test.has("Sita"));
 console.log(test.has("Rama"));
+
+console.log(test.length());
 
 console.log(test);
 
