@@ -43,7 +43,7 @@ class HashMap {
     let list = bucket[0]; // Selects instance of linkedList
 
     if (list.size() === 0) {
-      list.append(key, value); 
+      list.append(key, value);
     }
 
     // if list contains key, overwrite the value. else, append new key and value to the list
@@ -57,6 +57,26 @@ class HashMap {
       list.append(key, value);
     }
   }
+
+  /* Returns the value associated with key */
+  get(key) {
+    let value = null;
+    let bucket = this.bucket(key); // Gets bucket
+    let list = bucket[0]; // Selects instance of linkedList
+
+    if (list.size() === 0) {
+      return value;
+    }
+
+    if (list.contains(key)) {
+      let nodeIndex = list.find(key);
+      let foundNode = list.at(nodeIndex);
+
+      value = foundNode.value; // Sets value to found Node value
+    }
+
+    return value;
+  }
 }
 
 const test = new HashMap();
@@ -64,6 +84,9 @@ const test = new HashMap();
 console.log(test.set("Rama", "hi"));
 
 console.log(test.set("Sita", "nothing"));
+
+console.log(test.get("Sita"));
+console.log(test.get("Rama"));
 
 console.log(test);
 
