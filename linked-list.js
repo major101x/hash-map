@@ -68,6 +68,19 @@ export default class LinkedList {
     }
   }
 
+  /* Returns keys in list */
+  keys() {
+    let foundKeys = [];
+    let pointer = this.headNode;
+
+    while (pointer) {
+      foundKeys.push(pointer.key); // Adds key to array
+      pointer = pointer.next;
+    }
+
+    return foundKeys;
+  }
+
   /* Returns node at given index */
   at(index) {
     if (!this.headNode) {
