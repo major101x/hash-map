@@ -127,6 +127,12 @@ class HashMap {
 
     return count;
   }
+
+  /* Clears all entries in the hash map */
+  clear() {
+    this.buckets = []; // Resets the buckets array
+    this.#init(); // Re-initializes the linkedLists inside the buckets
+  }
 }
 
 const test = new HashMap();
@@ -151,6 +157,8 @@ console.log(test.has("Rama"));
 
 console.log(test.length());
 
+console.log(test);
+test.clear();
 console.log(test);
 
 console.log(test.hash("Rama"));
