@@ -133,6 +133,20 @@ class HashMap {
     this.buckets = []; // Resets the buckets array
     this.#init(); // Re-initializes the linkedLists inside the buckets
   }
+
+  /* Returns an array containing all keys in the hash map */
+  keys() {
+    let keys = [];
+
+    for (let bucket of this.buckets) {
+      let list = bucket[0]; // Selects instance of linkedList
+
+      // Gets the array of keys and spreads them before pushing to the keys array
+      let key = list.keys();
+      keys.push(...key);
+    }
+    return keys;
+  }
 }
 
 const test = new HashMap();
@@ -158,8 +172,9 @@ console.log(test.has("Rama"));
 console.log(test.length());
 
 console.log(test);
-test.clear();
+// test.clear();
 console.log(test);
+console.log(test.keys());
 
 console.log(test.hash("Rama"));
 
