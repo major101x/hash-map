@@ -94,17 +94,41 @@ class HashMap {
 
     return hasKey;
   }
+
+  /* Removes a node from the hash map with matching key */
+  remove(key) {
+    let bucket = this.bucket(key); // Gets bucket
+    let list = bucket[0]; // Selects instance of linkedList
+
+    if (list.size() === 0) {
+      throw new Error("Bucket is empty!");
+    }
+
+    if (list.contains(key)) {
+      let nodeIndex = list.find(key);
+
+      list.removeAt(nodeIndex);
+    } else {
+      throw new Error("Key not found"); // Throw error if key does not exist
+    }
+  }
 }
 
 const test = new HashMap();
 
 console.log(test.set("Rama", "hi"));
 
+console.log(test.set("Pulpy", "hi"));
+
 console.log(test.set("Sita", "nothing"));
 
 console.log(test.get("Sita"));
 console.log(test.get("Rama"));
 
+console.log(test.has("Sita"));
+console.log(test.remove("Sita"));
+console.log(test.remove("Pulpy"));
+console.log(test.has("Pulpy"));
 console.log(test.has("Sita"));
 console.log(test.has("Rama"));
 
