@@ -77,6 +77,23 @@ class HashMap {
 
     return value;
   }
+
+  /* Checks whether the key is in the hash map */
+  has(key) {
+    let hasKey = false;
+    let bucket = this.bucket(key); // Gets bucket
+    let list = bucket[0]; // Selects instance of linkedList
+
+    if (list.size() === 0) {
+      return hasKey; // Return false if list is empty
+    }
+
+    if (list.contains(key)) {
+      hasKey = true;
+    }
+
+    return hasKey;
+  }
 }
 
 const test = new HashMap();
@@ -87,6 +104,9 @@ console.log(test.set("Sita", "nothing"));
 
 console.log(test.get("Sita"));
 console.log(test.get("Rama"));
+
+console.log(test.has("Sita"));
+console.log(test.has("Rama"));
 
 console.log(test);
 
