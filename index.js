@@ -55,6 +55,19 @@ class HashMap {
       foundNode.value = value;
     } else {
       list.append(key, value);
+
+      /* If hash map exceeds the load factor, double the 
+        capacity of the array and re-hash the keys */
+      if (this.length() > this.capacity * this.loadFactor) {
+        let savedArray = this.entries(); // Save the entries of the previous array
+        this.buckets = [];
+        this.capacity *= 2;
+        this.#init(); // Re-initialize the array with a doubled capacity
+
+        for (let entry of savedArray) {
+          this.set(entry[0], entry[1]); // Set the key, value pairs
+        }
+      }
     }
   }
 
@@ -182,33 +195,41 @@ const test = new HashMap();
 
 /* TEST CODE */
 
-test.set("Rama", "hi");
-test.set("Pulpy", "hi");
-test.set("Sita", "nothing");
+test.set("apple", "red");
+test.set("banana", "yellow");
+test.set("carrot", "orange");
+test.set("dog", "brown");
+test.set("elephant", "gray");
+test.set("frog", "green");
+test.set("grape", "purple");
+test.set("hat", "black");
+test.set("ice cream", "white");
+test.set("jacket", "blue");
+test.set("kite", "pink");
+test.set("lion", "golden");
 
-console.log(test.get("Sita"));
-console.log(test.get("Rama"));
-
-console.log(test.has("Sita"));
-
-test.remove("Sita");
-test.remove("Pulpy");
-
-console.log(test.has("Pulpy"));
-console.log(test.has("Sita"));
-console.log(test.has("Rama"));
-
-console.log(test.length());
-
-console.log(test);
-// test.clear();
-console.log(test);
 console.log(test.keys());
 console.log(test.values());
 console.log(test.entries());
+console.log(test.length());
 
-console.log(test.hash("Rama"));
+console.log("length: " + test.length());
+console.log("capacity: " + test.capacity);
 
-// console.log(test.init());
+test.set("jacket", "blueblack");
+test.set("kite", "pinks");
+test.set("lion", "gloss");
+test.set("lion", "gold");
 
-console.log("Console working!");
+console.log("length: " + test.length());
+console.log("capacity: " + test.capacity);
+
+test.set("moon", "silver");
+console.log(test.entries());
+console.log(test);
+test.set("monsoon", "silver");
+
+console.log(test.get("moon"));
+
+console.log("length: " + test.length());
+console.log("capacity: " + test.capacity);
