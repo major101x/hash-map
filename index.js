@@ -161,6 +161,21 @@ class HashMap {
     }
     return values;
   }
+
+  /* Returns an array that contains each key, value pair */
+  entries() {
+    let entries = [];
+
+    for (let bucket of this.buckets) {
+      let list = bucket[0]; // Selects instance of linkedList
+
+      // Gets the array of entries and spreads them before pushing to the entries array
+      let entry = list.entries();
+      entries.push(...entry);
+    }
+
+    return entries;
+  }
 }
 
 const test = new HashMap();
@@ -190,6 +205,7 @@ console.log(test);
 console.log(test);
 console.log(test.keys());
 console.log(test.values());
+console.log(test.entries());
 
 console.log(test.hash("Rama"));
 

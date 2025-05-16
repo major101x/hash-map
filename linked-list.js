@@ -94,6 +94,19 @@ export default class LinkedList {
     return foundValues;
   }
 
+  /* Returns key, value pairs on list */
+  entries() {
+    let foundEntries = [];
+    let pointer = this.headNode;
+
+    while (pointer) {
+      foundEntries.push([pointer.key, pointer.value]);
+      pointer = pointer.next;
+    }
+
+    return foundEntries;
+  }
+
   /* Returns node at given index */
   at(index) {
     if (!this.headNode) {
